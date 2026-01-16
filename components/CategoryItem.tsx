@@ -54,7 +54,7 @@ export function CategoryItem({ category, count }: CategoryItemProps) {
             </div>
         </div>
 
-        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
             <button onClick={() => setIsEditing(true)} className="text-slate-400 hover:text-indigo-400 p-2 rounded hover:bg-white/5 transition-colors">
                 <Edit2 size={18} />
             </button>
