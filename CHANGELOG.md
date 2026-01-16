@@ -1,0 +1,20 @@
+# Histórico de Versões - TaskFlow
+
+## [1.0.0] - 2026-01-16
+### 🎉 Lançamento Oficial (Produção)
+- Sistema reescrito do zero com Next.js 16 e Server Actions.
+- Novo design Dark Mode com Glassmorphism.
+- Integração completa com Banco de Dados (Postgres/Prisma).
+- Sistema de Autenticação via Clerk.
+
+### ✨ Funcionalidades
+- Criação, edição e exclusão de tarefas.
+- Kanban visual (Pendente vs Concluído).
+- Sistema de Categorias com cores (Responsivo).
+- Widget de Feedback com captura de nome.
+- Painel Admin para leitura de feedbacks.
+
+## [0.1.0] - 2025-10-15
+### 🚧 Beta
+- Início do desenvolvimento.
+- Estrutura básica do Kanban.

@@ -2,6 +2,7 @@ import { Heart, Globe, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const appVersion = "v1.0.1";
 
   return (
     <footer className="mt-20 border-t border-white/5 py-8">
@@ -9,6 +10,9 @@ export function Footer() {
         
         <div className="flex items-center gap-1.5 text-sm text-slate-500">
           <span>&copy; {currentYear} TASKFLOW 2.0 |  Feito por</span>
+          <span className="bg-white/5 px-2 py-0.5 rounded text-xs font-mono text-indigo-400">
+            {appVersion}
+          </span>
           <span>por <span className="text-slate-300 font-medium">Lucas Magesky</span>.</span>
         </div>
 
