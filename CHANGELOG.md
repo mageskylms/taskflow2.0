@@ -1,5 +1,9 @@
 # Histórico de Versões - TaskFlow
 
+## [1.0.1] - 2026-01-16
+### 🐛 Correções
+- Ajuste de responsividade na tela de Gerenciar Categorias (Layout quebrado no mobile).
+
 ## [1.0.0] - 2026-01-16
 ### 🎉 Lançamento Oficial (Produção)
 - Sistema reescrito do zero com Next.js 16 e Server Actions.
