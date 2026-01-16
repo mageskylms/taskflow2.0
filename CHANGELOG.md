@@ -1,5 +1,9 @@
 # Histórico de Versões - TaskFlow
 
+## [1.0.4] - 2026-01-16
+### 🐛 Correções
+- Correção dos ícones de editar/excluir que não apareciam no mobile (Touch devices).
+
 ## [1.0.3] - 2026-01-16
 ### 🔧 Infraestrutura
 - Adicionado Vercel Analytics para monitoramento de acessos.

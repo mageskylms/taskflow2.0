@@ -2,7 +2,7 @@ import { Heart, Globe, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const appVersion = "v1.0.3";
+  const appVersion = "v1.0.4";
 
   return (
     <footer className="mt-20 border-t border-white/5 py-8">
