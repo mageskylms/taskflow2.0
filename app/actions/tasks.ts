@@ -72,6 +72,23 @@ export async function deleteTask(id: number) {
   revalidatePath("/");
 }
 
+export async function toggleTask(taskId: string, currentStatus: string) {
+  const { userId } = await auth();
+  if (!userId) return;
+
+  const newStatus = currentStatus === "DONE" ? "TODO" : "DONE";
+
+  await prisma.task.update({
+    where: { 
+      id: parseInt(taskId),
+      userId: userId, 
+    },
+    data: { status: newStatus },
+  });
+
+  revalidatePath("/");
+}
+
 // subtarefas
 
 export async function createSubtask(taskId: number, titulo: string) {

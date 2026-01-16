@@ -1,6 +1,6 @@
 "use client";
 
-import { Task, Category } from "@prisma/client"; 
+import { Task, Category } from "@prisma/client";
 import { deleteTask, toggleTask } from "@/app/actions/tasks";
 import Link from "next/link";
 import { Trash2, Calendar, CheckCircle2, Circle, Flag, Tag } from "lucide-react";
@@ -26,7 +26,7 @@ export function TaskItem({ task }: TaskProps) {
     <li className={`
       group relative flex justify-between items-start gap-4 p-5 rounded-2xl transition-all duration-300
       backdrop-blur-md border shadow-lg hover:-translate-y-1
-      ${task.concluida
+      ${task.status === "DONE"
         ? "bg-slate-900/30 border-slate-800/50 opacity-60"
         : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
       }
@@ -34,16 +34,16 @@ export function TaskItem({ task }: TaskProps) {
 
       <div className="flex items-start gap-4 flex-1">
         <button
-          onClick={() => toggleTask(task.id, task.concluida)}
-          className={`mt-1 transition-colors ${task.concluida ? "text-green-500" : "text-slate-400 hover:text-blue-400"}`}
+          onClick={() => toggleTask(task.id.toString(), task.status)}
+          className={`mt-1 transition-colors ${task.status === "DONE" ? "text-green-500" : "text-slate-400 hover:text-blue-400"}`}
         >
-          {task.concluida ? <CheckCircle2 size={24} /> : <Circle size={24} />}
+          {task.status === "DONE" ? <CheckCircle2 size={24} /> : <Circle size={24} />}
         </button>
 
         <div className="flex flex-col gap-2 w-full">
           <div className="flex flex-wrap items-center gap-3">
             <Link href={`/editar/${task.id}`} className="hover:text-blue-300 transition-colors mr-auto">
-              <span className={`text-lg font-medium ${task.concluida ? "line-through decoration-slate-500" : "text-slate-100"}`}>
+              <span className={`text-lg font-medium ${task.status === "DONE" ? "line-through decoration-slate-500" : "text-slate-100"}`}>
                 {task.titulo}
               </span>
             </Link>
@@ -59,7 +59,7 @@ export function TaskItem({ task }: TaskProps) {
                   bg-opacity-10 border-opacity-20 text-white font-bold
                   ${task.category.cor || 'bg-slate-500 border-slate-500'} 
                   `}>
-                
+
                 <div className={`w-1.5 h-1.5 rounded-full ${task.category.cor || 'bg-slate-400'}`} />
                 <span className="opacity-90">{task.category.nome}</span>
               </span>
