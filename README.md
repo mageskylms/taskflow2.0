@@ -1,8 +1,5 @@
 # 🚀 TaskFlow v2.0 (by MSKY)
 
-![TaskFlow Cover](https://via.placeholder.com/1200x400.png?text=TaskFlow+Cover+Image)
-*(Dica: Substitua esse link acima por um print bem bonito da tela inicial do seu app)*
-
 > **Organize sua vida com estilo.** Um gerenciador de tarefas Kanban moderno, privado e minimalista.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)
@@ -105,9 +102,3 @@ Ou use o Widget de Feedback dentro do próprio app.
 Este projeto está sob a licença MIT. Sinta-se livre para usar como base para seus estudos.
 
 <div align="center"> <p>Feito com 💜 por <a href="https://lucas.msky.com.br" target="_blank"><b>Lucas (MSKY)</b></a></p> <p> <a href="https://taskflow.msky.com.br">Acessar Demonstração Online</a> </p> </div>
-
-
-### 💡 Toque de Mestre:
-
-Percebeu a linha `![TaskFlow Cover](...)`?
-Tire um **Print Screen** bem bonito do seu app (com algumas tarefas criadas para ficar cheio), suba essa imagem no próprio GitHub (pode ser numa Issue ou na pasta `public`) e troque o link ali. Um README com imagem chama 10x mais atenção\!
