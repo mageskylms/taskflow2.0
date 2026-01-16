@@ -1,5 +1,9 @@
 # Histórico de Versões - TaskFlow
 
+## [1.0.3] - 2026-01-16
+### 🔧 Infraestrutura
+- Adicionado Vercel Analytics para monitoramento de acessos.
+
 ## [1.0.2] - 2026-01-16
 ### 🐛 Correções
 - Texto de versão incluído no local errado. Corrigido!
