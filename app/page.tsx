@@ -1,65 +1,119 @@
-import Image from "next/image";
+import { prisma } from "@/lib/prisma";
+import { KanbanBoard } from "@/components/KanbanBoard";
+import { TaskFilter } from "@/components/TaskFilter";
+import { CategoryFilter } from "@/components/CategoryFilter";
+import { NewTaskModal } from "@/components/NewTaskModal";
+import { DashboardStats } from "@/components/DashboardStats";
+import { Header } from "@/components/Header";
+import { auth, currentUser } from "@clerk/nextjs/server";
+import { UserButton, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
+import { addTask } from "@/app/actions/tasks";
+import Link from "next/link";
+import { Settings } from "lucide-react";
+import { FeedbackWidget } from "@/components/FeedbackWidget";
+import { Footer } from "@/components/Footer";
+import { dark } from "@clerk/themes";
 
-export default function Home() {
+export default async function Home({ searchParams }: { searchParams: Promise<{ q?: string; cat?: string }> }) {
+  const { userId } = await auth();
+  const user = await currentUser(); //forma de pegar dados do usuário logado com Clerk
+
+  if (!userId) return null;
+
+  const params = await searchParams;
+  const query = params.q || "";
+  const catFilter = params.cat ? parseInt(params.cat) : undefined;
+
+
+  // Busca Tarefas
+  const tasks = await prisma.task.findMany({
+    where: {
+      userId: userId,
+      titulo: { contains: query, mode: 'insensitive' },
+      categoryId: catFilter,
+    },
+    orderBy: [{ priority: 'desc' }, { dataLimite: 'asc' }],
+    include: {
+      category: true,
+      subtasks: { orderBy: { id: 'asc' } }
+    },
+  });
+
+  // Busca Categorias
+  const categories = await prisma.category.findMany({
+    where: { userId: userId },
+    orderBy: { nome: 'asc' }
+  });
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="max-w-7xl mx-auto p-4 md:p-8 font-sans min-h-screen pb-24 relative">
+
+      <div className="absolute top-4 right-4 md:top-8 md:right-8 z-10">
+        <ClerkLoading>
+          <div className="w-8 h-8 rounded-full bg-white/10 animate-pulse" />
+        </ClerkLoading>
+
+        <ClerkLoaded>
+          <UserButton
+            afterSignOutUrl="/sign-in"
+            appearance={{
+              baseTheme: dark,
+              elements: {
+                // O Cartão flutuante (Popover)
+                userButtonPopoverCard:
+                  "bg-slate-900/95 border border-white/10 backdrop-blur-xl shadow-2xl",
+
+                // O texto do nome do usuário
+                userButtonPopoverMainIdentifier:
+                  "text-white font-bold",
+
+                // O texto do email
+                userButtonPopoverSecondaryIdentifier:
+                  "text-slate-400",
+
+                // Os botões de ação (Gerenciar conta, Sair)
+                userButtonPopoverActionButton:
+                  "hover:bg-white/10 text-slate-200 hover:text-white transition-colors",
+
+                // Ícones dentro dos botões (engrenagem, porta de saída)
+                userButtonPopoverActionButtonIcon:
+                  "text-indigo-400",
+
+                // O rodapé (Secured by Clerk) - deixamos discreto
+                userButtonPopoverFooter:
+                  "hidden" // Ou "bg-transparent border-t border-white/5" se quiser manter
+              }
+            }}
+          />
+        </ClerkLoaded>
+      </div>
+
+      <Header userName={user?.firstName} />
+
+      <DashboardStats tasks={tasks} />
+
+      <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center mb-6">
+        <div className="flex items-center gap-2 w-full md:w-auto overflow-hidden">
+          <div className="flex-1 overflow-x-auto scrollbar-hide">
+            <CategoryFilter categories={categories} />
+          </div>
+          <Link href="/categorias" className="p-2 mb-6 bg-white/5 border border-white/10 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+            <Settings size={20} />
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="w-full md:w-64">
+          <TaskFilter />
         </div>
-      </main>
-    </div>
+      </div>
+
+      <KanbanBoard initialTasks={tasks} categories={categories} />
+
+      <NewTaskModal categories={categories} addTaskAction={addTask} />
+
+      <FeedbackWidget />
+
+      <Footer />
+
+    </main>
   );
 }

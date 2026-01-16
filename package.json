@@ -9,9 +9,17 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/localizations": "^3.34.0",
+    "@clerk/nextjs": "^6.36.7",
+    "@clerk/themes": "^2.4.47",
+    "@hello-pangea/dnd": "^18.0.1",
+    "@prisma/client": "^5.22.0",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sonner": "^2.0.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -20,7 +28,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
+    "prisma": "^5.22.0",
     "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
