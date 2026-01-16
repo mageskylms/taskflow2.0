@@ -2,25 +2,24 @@ import { Heart, Globe, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const appVersion = "v1.0.1";
+  const appVersion = "v1.0.2";
 
   return (
     <footer className="mt-20 border-t border-white/5 py-8">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-        
+
         <div className="flex items-center gap-1.5 text-sm text-slate-500">
-          <span>&copy; {currentYear} TASKFLOW 2.0 |  Feito por</span>
-          <span className="bg-white/5 px-2 py-0.5 rounded text-xs font-mono text-indigo-400">
-            {appVersion}
-          </span>
-          <span>por <span className="text-slate-300 font-medium">Lucas Magesky</span>.</span>
+          <span>&copy; {currentYear} TASKFLOW 2.0 | Feito por</span>
+          
+          <span className="text-slate-300 font-medium">Lucas Magesky |</span>
+          <span>{appVersion}</span>
         </div>
 
         <div className="flex items-center gap-6 text-sm">
-          
-          <a 
-            href="https://lucas.msky.com.br" 
-            target="_blank" 
+
+          <a
+            href="https://lucas.msky.com.br"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-slate-400 hover:text-indigo-400 transition-colors group"
           >
@@ -29,9 +28,9 @@ export function Footer() {
             <ArrowUpRight size={10} className="opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
 
-          <a 
-            href="https://msky.com.br" 
-            target="_blank" 
+          <a
+            href="https://msky.com.br"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
           >

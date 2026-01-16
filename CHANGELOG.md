@@ -1,5 +1,9 @@
 # Histórico de Versões - TaskFlow
 
+## [1.0.2] - 2026-01-16
+### 🐛 Correções
+- Texto de versão incluído no local errado. Corrigido!
+
 ## [1.0.1] - 2026-01-16
 ### 🐛 Correções
 - Ajuste de responsividade na tela de Gerenciar Categorias (Layout quebrado no mobile).
