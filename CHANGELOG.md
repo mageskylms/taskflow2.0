@@ -1,5 +1,14 @@
 # Histórico de Versões - TaskFlow
 
+## [1.1.0] - 2026-04-16
+### ✨ Funcionalidades
+- Adicionada funcionalidade de arrastar e soltar (Drag and Drop) para reordenar tarefas.
+- Implementado sistema de data de vencimento para as tarefas.
+- Adicionado landing page com informações sobre o projeto e link para o repositório.
+
+### 🐛 Correções
+- Melhoria na performance de renderização dos cards de tarefas.
+
 ## [1.0.4] - 2026-01-16
 ### 🐛 Correções
 - Correção dos ícones de editar/excluir que não apareciam no mobile (Touch devices).

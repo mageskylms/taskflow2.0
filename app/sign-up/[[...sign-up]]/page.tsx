@@ -5,21 +5,27 @@ import { Footer } from "@/components/Footer";
 export default function SignUpPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 relative overflow-hidden">
-      
+
       <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="z-10 text-center mb-8 max-w-md px-6">
-        <h1 className="text-3xl font-extrabold text-white mb-2">
-          Crie sua conta
+        <h1 className="text-4xl font-extrabold text-white mb-4 mt-4 tracking-tight">
+          TASK <span className="text-indigo-400">FLOW</span> 2.0
         </h1>
+        <a href="/" className="text-indigo-400 hover:text-indigo-300 ">
+          ← Voltar
+        </a>
+        <h2 className="text-3xl font-extrabold text-white mb-2">
+          Crie sua conta
+        </h2>
         <p className="text-slate-400 text-sm">
           Comece a organizar sua vida profissional hoje mesmo. É grátis.
         </p>
       </div>
 
       <div className="z-10">
-        <SignUp 
+        <SignUp
           appearance={{
             baseTheme: dark,
             elements: {
@@ -33,7 +39,7 @@ export default function SignUpPage() {
         />
       </div>
 
-      <Footer/> 
+      <Footer />
 
     </div>
   );
